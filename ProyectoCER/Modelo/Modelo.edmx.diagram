@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="925859128a9f4c4bbffefe455661438b" Name="Diagrama1">
+        <EntityTypeShape EntityType="BDControlERModel.cliente" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDControlERModel.Equipo" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDControlERModel.EvaluarTecnico" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDControlERModel.Orden_Trabajo" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDControlERModel.Recepcion" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDControlERModel.TipoPago" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDControlERModel.Usuario" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="BDControlERModel.FK_EvaluarTecnico_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="BDControlERModel.FK_Recepcion_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="BDControlERModel.FK_Recepcion_Equipo" ManuallyRouted="false" />
+        <AssociationConnector Association="BDControlERModel.FK_EvaluarTecnico_Orden_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="BDControlERModel.FK_Orden_Trabajo_Recepcion" ManuallyRouted="false" />
+        <AssociationConnector Association="BDControlERModel.FK_Orden_Trabajo_TipoPago" ManuallyRouted="false" />
+        <AssociationConnector Association="BDControlERModel.FK_Orden_Trabajo_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
