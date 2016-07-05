@@ -35,5 +35,24 @@ namespace ProyectoCER.Controlador
             }
             catch (Exception) { return null; }
         }
+
+        public bool validarRUT(string rut)
+        {
+
+            try
+            {
+                var consulta = from ui in contexto.cliente
+                               where ui.Rut.Equals(rut) select ui;
+                bool valido = consulta.Count() == 1;               
+                return valido;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+
     }
 }

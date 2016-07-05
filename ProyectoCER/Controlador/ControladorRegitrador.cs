@@ -75,6 +75,37 @@ namespace ProyectoCER.Controlador
           catch (Exception) { return null; }
       }
 
+      public List<Equipo> ListadoEquipos()
+      {
+          try
+          {
+
+              return contexto.Equipo.ToList();
+
+          }
+          catch (Exception) { return null; }
+      }
+
+      public List<object> BusquedaRecepcion()
+      {
+
+          try
+          {
+              var consulta = from recep in contexto.Recepcion where recep.Estado == "Sin Asignar" select recep;
+                            
+                            
+
+                             
+              return consulta.ToList<object>();
+          }
+          catch (Exception)
+          {
+
+              return null;
+          }
+      }
+
+
    
 
     }

@@ -13,29 +13,30 @@ namespace ProyectoCER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ControladorRegitrador control_R = new ControladorRegitrador();
-            ControladorCliente control_C = new ControladorCliente();
 
 
             if (!IsPostBack)
             {
                 cargarCBOX();
                 MultiView1_Contenido.ActiveViewIndex = 0;
-                GridView_AsigarTec.DataSource = control_R.ListadoOrdenTrabajo();
-                GridView_AsigarTec.DataBind();
+                cargarGridview();
 
-                GridView_recepcion.DataSource = control_R.ListadoRecepcion();
-                GridView_recepcion.DataBind();
-
-                GridView_Clientes.DataSource = control_C.ListadoClientes();
-                GridView_Clientes.DataBind();
+                mostrarTecnicosYrecepciones();
             }
         }
 
         protected void btn_Crear_Recepcion_Click(object sender, EventArgs e)
         {
+
             MultiView1_Contenido.ActiveViewIndex = 1;
-        } 
+            txtTipo.Enabled = false;
+            txtModelo.Enabled = false;
+            txtMarca.Enabled = false;
+            txtAccesorios.Enabled = false;
+            txtProblema.Enabled = false;
+            lbtnAgregarRecepcion.Enabled = false;
+
+        }
 
         protected void btn_RegistrarCliente_Click(object sender, EventArgs e)
         {
@@ -49,61 +50,216 @@ namespace ProyectoCER
 
         protected void LbtnAgregar_Cliente_Click(object sender, EventArgs e)
         {
-            ControladorCliente control = new ControladorCliente();
 
-           cliente nueva = new cliente
-
+            if (txtRut.Text == "" || txtNombre.Text == "" || txtApellido.Text == "" || txtDireccion.Text == "" || txtDireccion.Text == ""
+                || txtCorreo.Text == "" || txtTelefono.Text == "" || txtContraseña.Text == "")
             {
-                Rut= txtRut.Text,
-               Nombre= txtNombre.Text,
-               Apellido = txtApellido.Text,
-               Direccion = txtDireccion.Text,
-                Correo = txtCorreo.Text,
-               Telefono = Convert.ToInt32(txtTelefono.Text),
-               Contraseña = txtContraseña.Text
-            };
+                LbtnAgregar_Cliente.CssClass = "btn btn-danger form-control";
+                LbtnAgregar_Cliente.Text = "Faltan datos";
 
-            if (control.agregarCliente(nueva))
-            {
-                GridView_Clientes.DataSource = control.ListadoClientes();
-                GridView_Clientes.DataBind();
             }
-            
+            else
+            {
+                ControladorCliente control = new ControladorCliente();
+                cliente nueva = new cliente
 
-         
+                {
+                    Rut = txtRut.Text,
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    Direccion = txtDireccion.Text,
+                    Correo = txtCorreo.Text,
+                    Telefono = Convert.ToInt32(txtTelefono.Text),
+                    Contraseña = txtContraseña.Text
+                };
+
+                if (control.agregarCliente(nueva))
+                {
+                    cargarCBOX();
+                    cargarGridview();
+                    LbtnAgregar_Cliente.CssClass = "btn btn-primary form-control";
+                    LbtnAgregar_Cliente.Text = "Registrar Cliente";
+                }
+            }
+
+
+
+
         }
 
         protected void lbtnAgregarRecepcion_Click(object sender, EventArgs e)
         {
-            ControladorRegitrador control = new ControladorRegitrador();
-           
-            Recepcion nueva = new Recepcion
 
+            if (txtRut_cliente.Text == "" || txtTipo.Text == "" || txtMarca.Text == "" || txtModelo.Text == "" || txtAccesorios.Text == "" || txtProblema.Text == "")
             {
-                RUT_Cliente = cbClientes.SelectedValue,
-                IDEquipo = 2,
-                Accesorios = txtAccesorios.Text,
-                Problema = txtProblema.Text,
-                Fecha = DateTime.Now
+                lbtnAgregarRecepcion.CssClass = "btn btn-danger form-control";
+                lbtnAgregarRecepcion.Text = "Faltan Datos";
 
-            };
-
-            if (control.agregarRecepcion(nueva))
+            }
+            else
             {
-                GridView_recepcion.DataSource = control.ListadoRecepcion();
-                GridView_recepcion.DataBind();
+
+                ControladorRegitrador control = new ControladorRegitrador();
+                Equipo EqNuevo = new Equipo { Tipo = txtTipo.Text, Marca = txtMarca.Text, Modelo = txtMarca.Text };
+                lb_equipo_nuevo.Text = "Equipo creado";
+
+                if (control.agregarEquipo(EqNuevo))
+                {
+                    cargarCBOX();
+                    cargarGridview();
+                }
+
+                int idequipo = control.ListadoEquipos().Count() + 1;
+
+                Recepcion nueva = new Recepcion
+                {
+                    RUT_Cliente = txtRut_cliente.Text,
+                    IDEquipo = idequipo,
+                    Accesorios = txtAccesorios.Text,
+                    Problema = txtProblema.Text,
+                    Fecha = DateTime.Now
+
+                };
+
+                if (control.agregarRecepcion(nueva))
+                {
+                    cargarCBOX();
+                    cargarGridview();
+                }
+
             }
         }
 
         public void cargarCBOX()
         {
-            ControladorCliente carga = new ControladorCliente();
-            cbClientes.DataSource = carga.ListadoClientes();
 
-            cbClientes.DataTextField = "Nombre";
-            cbClientes.DataValueField = "Rut";
-            cbClientes.DataBind();
 
         }
+
+        public void cargarGridview()
+        {
+            ControladorRegitrador control_R = new ControladorRegitrador();
+            ControladorCliente control_C = new ControladorCliente();
+
+            GridView_AsigarTec.DataSource = control_R.ListadoOrdenTrabajo();
+            GridView_AsigarTec.DataBind();
+
+            GridView_recepcion.DataSource = control_R.ListadoRecepcion();
+            GridView_recepcion.DataBind();
+
+            GridView_Clientes.DataSource = control_C.ListadoClientes();
+            GridView_Clientes.DataBind();
+
+        }
+
+        protected void btn_Tecnico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Tecnico.aspx");
+        }
+
+        protected void validar_rut_Click(object sender, EventArgs e)
+        {
+            ControladorCliente control = new ControladorCliente();
+
+            if (IsValid)
+            {
+
+                if (control.validarRUT(txtRut_cliente.Text))
+                {
+                    lb_validarRut.Text = "Rut registrado";
+                    txtTipo.Enabled = true;
+                    txtModelo.Enabled = true;
+                    txtMarca.Enabled = true;
+                    txtAccesorios.Enabled = true;
+                    txtProblema.Enabled = true;
+                    lbtnAgregarRecepcion.Enabled = true;
+                }
+                else
+                {
+
+
+                    lb_validarRut.Text = "Rut no registrado";
+                    txtRut.Text = txtRut_cliente.Text;
+                    MultiView1_Contenido.ActiveViewIndex = 2;
+
+
+                }
+            }
+        }
+
+
+
+        protected void Lbtn_Asignartecnico_Click(object sender, EventArgs e)
+        {
+
+            LinkBut_AsignarTecnico.Visible = true;
+            ModalPopupExtender1_add_eddit.Show();
+        }
+
+        public void mostrarTecnicosYrecepciones()
+        {
+
+            ControladorRegitrador control = new ControladorRegitrador();
+            ControladorTecnico controlTec = new ControladorTecnico();
+            cbTecnicos.DataSource = controlTec.TecnicoPortipo("tecnico");
+            cbTecnicos.DataTextField = "Nombre";
+            cbTecnicos.DataValueField = "RUT";
+            cbTecnicos.DataBind();
+            cbTecnicos.Items.Insert(0, "SELECCIONE TECNICO");
+
+
+            cbRecepcione.DataSource = control.BusquedaRecepcion();
+            cbRecepcione.DataTextField = "IDRecepcion";
+            cbRecepcione.DataValueField = "IDRecepcion";
+            cbRecepcione.DataBind();
+            cbRecepcione.Items.Insert(0, "SELECCIONE RECEPCION");
+
+        }
+
+        protected void btn_cerrar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        protected void LinkBut_AsignarTecnico_Click(object sender, EventArgs e)
+        {
+            ControladorRegitrador control = new ControladorRegitrador();
+            Orden_Trabajo nueva = new Orden_Trabajo
+            {
+                RUT_Usuario = cbTecnicos.SelectedValue,
+                ID_Recepcion= Convert.ToInt32(cbRecepcione.SelectedValue),
+                Estado = "En reparacion",
+                Observacion= "Sin Observacion",
+                Precio=0,
+                Estado_pago="pendiente",
+                ID_TipoPago=1
+
+            };
+
+            if (control.agregarOrdenTrabajo(nueva))
+            {
+                cargarCBOX();
+                cargarGridview();
+            }
+
+        }
+
+        protected void GridView_recepcion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                cargarGridview();
+                GridView_recepcion.PageIndex = e.NewPageIndex;
+                GridView_recepcion.DataBind();
+
+            }
+            catch (Exception)
+            {
+                
+                
+            }
+        }
+
     }
 }
+    

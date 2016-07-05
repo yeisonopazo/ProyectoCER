@@ -25,6 +25,7 @@ namespace ProyectoCER.Modelo
         public string Accesorios { get; set; }
         public string Problema { get; set; }
         public System.DateTime Fecha { get; set; }
+        public string Estado { get; set; }
     
         public virtual cliente cliente { get; set; }
         public virtual Equipo Equipo { get; set; }

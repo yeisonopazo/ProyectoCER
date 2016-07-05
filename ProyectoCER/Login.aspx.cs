@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.UI.WebControls; 
+
 
 namespace ProyectoCER
 {
@@ -19,7 +20,8 @@ namespace ProyectoCER
 
             if (txtUser.Text.Equals("registrador"))
             {
-                Response.Redirect("Registrador.aspx");
+                Response.Redirect("Registrador.aspx");                
+
             }
             else if (txtUser.Text.Equals("tecnico"))
             {

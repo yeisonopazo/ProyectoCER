@@ -80,8 +80,8 @@
           <Property Name="ID_Orden" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RUT_Usuario" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="ID_Recepcion" Type="int" Nullable="false" />
-          <Property Name="Estado" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Observacion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Observacion" Type="varchar" MaxLength="50" />
           <Property Name="Precio" Type="int" Nullable="false" />
           <Property Name="Estado_pago" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="ID_TipoPago" Type="int" Nullable="false" />
@@ -96,6 +96,7 @@
           <Property Name="Accesorios" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Problema" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TipoPago">
           <Key>
@@ -297,8 +298,8 @@
           <Property Name="ID_Orden" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="RUT_Usuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="ID_Recepcion" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Observacion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Observacion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Precio" Type="Int32" Nullable="false" />
           <Property Name="Estado_pago" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="ID_TipoPago" Type="Int32" Nullable="false" />
@@ -317,6 +318,7 @@
           <Property Name="Accesorios" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Problema" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Estado" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="cliente" Relationship="BDControlERModel.FK_Recepcion_cliente" FromRole="Recepcion" ToRole="cliente" />
           <NavigationProperty Name="Equipo" Relationship="BDControlERModel.FK_Recepcion_Equipo" FromRole="Recepcion" ToRole="Equipo" />
           <NavigationProperty Name="Orden_Trabajo" Relationship="BDControlERModel.FK_Orden_Trabajo_Recepcion" FromRole="Recepcion" ToRole="Orden_Trabajo" />
@@ -501,6 +503,7 @@
                 <ScalarProperty Name="Accesorios" ColumnName="Accesorios" />
                 <ScalarProperty Name="Problema" ColumnName="Problema" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
