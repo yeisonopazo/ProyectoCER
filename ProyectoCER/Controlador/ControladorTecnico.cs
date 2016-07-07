@@ -39,5 +39,29 @@ namespace ProyectoCER.Controlador
                 return null;
             }
         }
+
+        public bool EditarOrden(Orden_Trabajo nueva)
+        {
+            try
+            {
+                Orden_Trabajo anterior = new Orden_Trabajo();
+                anterior = control.Orden_Trabajo.Find(nueva.ID_Orden);
+                anterior.RUT_Usuario = nueva.RUT_Usuario;
+                anterior.ID_Recepcion = nueva.ID_Recepcion;
+                anterior.Estado = nueva.Estado;
+                anterior.Observacion = nueva.Observacion;
+                anterior.Precio = nueva.Precio;
+                anterior.TipoPago = nueva.TipoPago;
+                return control.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+
+        }
+
     }
 }

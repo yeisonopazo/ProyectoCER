@@ -24,7 +24,80 @@
                                 <asp:View ID="View_UpdateOT" runat="server">                                 
                                     <asp:Label ID="Label3" CssClass="page-header" runat="server" Text="Actualizar Orden de trabajo"></asp:Label><br />
                                     <br />
-                                    <asp:GridView ID="GridView1"  CssClass="table table-striped" runat="server"></asp:GridView>
+                                    <asp:GridView ID="GridView1"  CssClass="table table-striped small" runat="server" AutoGenerateColumns="False"
+                                         OnRowCancelingEdit="GridView1_RowCancelingEdit"
+                                         OnRowDeleting="GridView1_RowDeleting"
+                                         OnRowEditing="GridView1_RowEditing"
+                                        DataKeyNames="ID_Orden" OnRowUpdating="GridView1_RowUpdating">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Numero de Orden" SortExpression="ID_Orden">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Orden") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Orden") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Tecnico" SortExpression="RUT_Usuario">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("RUT_Usuario") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("RUT_Usuario") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Recepcion" SortExpression="ID_Recepcion">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Eval("ID_Recepcion") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("ID_Recepcion") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Estado" SortExpression="Estado">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txtEstado" runat="server" Text='<%# Bind("Estado") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Estado") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Observacion" SortExpression="Observacion">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txtObservacion" runat="server" Text='<%# Bind("Observacion") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Observacion") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Precio" SortExpression="Precio">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txtPrecio" runat="server" Text='<%# Bind("Precio") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Precio") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Estado de Pago" SortExpression="Estado_pago">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txtEstadoPago" runat="server" Text='<%# Bind("Estado_pago") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("Estado_pago") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText=" Tipo de Pago" SortExpression="ID_TipoPago">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("ID_TipoPago") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("ID_TipoPago") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:CommandField ButtonType="Link" HeaderText="Editar" ShowEditButton="True" ShowHeader="True" />
+                                             
+                                        </Columns>
+                                    </asp:GridView>
                                 </asp:View>
                                 <asp:View ID="View2_ComunicarCliente" runat="server">
                                     <asp:Label ID="Label1" CssClass="page-header" runat="server" Text="Comunicar con el cliente"></asp:Label><br /><br />

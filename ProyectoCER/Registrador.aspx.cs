@@ -17,7 +17,7 @@ namespace ProyectoCER
 
             if (!IsPostBack)
             {
-                cargarCBOX();
+               
                 MultiView1_Contenido.ActiveViewIndex = 0;
                 cargarGridview();
 
@@ -198,6 +198,7 @@ namespace ProyectoCER
 
         public void mostrarTecnicosYrecepciones()
         {
+            
 
             ControladorRegitrador control = new ControladorRegitrador();
             ControladorTecnico controlTec = new ControladorTecnico();
@@ -214,6 +215,9 @@ namespace ProyectoCER
             cbRecepcione.DataBind();
             cbRecepcione.Items.Insert(0, "SELECCIONE RECEPCION");
 
+
+
+
         }
 
         protected void btn_cerrar_Click(object sender, EventArgs e)
@@ -223,23 +227,41 @@ namespace ProyectoCER
 
         protected void LinkBut_AsignarTecnico_Click(object sender, EventArgs e)
         {
-            ControladorRegitrador control = new ControladorRegitrador();
-            Orden_Trabajo nueva = new Orden_Trabajo
+            if (cbRecepcione.SelectedIndex == 0 || cbTecnicos.SelectedIndex==0)
             {
-                RUT_Usuario = cbTecnicos.SelectedValue,
-                ID_Recepcion= Convert.ToInt32(cbRecepcione.SelectedValue),
-                Estado = "En reparacion",
-                Observacion= "Sin Observacion",
-                Precio=0,
-                Estado_pago="pendiente",
-                ID_TipoPago=1
+                lbasignarTec.Text = "SELECCIONE LOS DOS CAMPOS";
+             
+               
+            }else{
+            
+                ControladorRegitrador control = new ControladorRegitrador();
+                Orden_Trabajo nueva = new Orden_Trabajo
+                {
+                    RUT_Usuario = cbTecnicos.SelectedValue,
+                    ID_Recepcion = Convert.ToInt32(cbRecepcione.SelectedValue),
+                    Estado = "En reparacion",
+                    Observacion = "Sin Observacion",
+                    Precio =3000,
+                    Estado_pago = "pendiente",
+                    ID_TipoPago = 1
 
-            };
+                };
 
-            if (control.agregarOrdenTrabajo(nueva))
-            {
-                cargarCBOX();
-                cargarGridview();
+                Recepcion nuevo = new Recepcion{ IDRecepcion=Convert.ToInt32(cbRecepcione.SelectedValue), Estado="Asignada a tecnico"
+                
+                
+                };
+
+                if (control.agregarOrdenTrabajo(nueva))
+                {
+                    mostrarTecnicosYrecepciones();
+                    cargarGridview();
+                }
+                if (control.EditarRecepcion(nuevo))
+                {
+                    mostrarTecnicosYrecepciones();
+                    cargarGridview();
+                }
             }
 
         }

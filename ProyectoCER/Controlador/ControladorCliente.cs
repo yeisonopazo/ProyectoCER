@@ -25,6 +25,38 @@ namespace ProyectoCER.Controlador
             }
         }
 
+        public bool EditarCliente(cliente nueva)
+        {
+            try
+            {
+                cliente anterior = new cliente();
+                anterior = contexto.cliente.Find(nueva.Rut);
+                anterior.Nombre = nueva.Nombre;
+                anterior.Direccion = nueva.Direccion;
+                anterior.Correo = nueva.Correo;
+                anterior.Telefono = nueva.Telefono;
+                anterior.Contraseña = nueva.Contraseña;
+
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public bool BloquearCliente(string rut)
+        {
+            try
+            {
+                contexto.cliente.Remove(contexto.cliente.Find(rut));
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception) { return false; }
+
+        }
+
         public List<cliente> ListadoClientes()
         {
             try

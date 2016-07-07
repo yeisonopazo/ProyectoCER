@@ -27,7 +27,7 @@
                                 <asp:View ID="View1_VerEquipos" runat="server">
                                     <div class="col-md-10">
                                     <asp:Label ID="Label3" CssClass="page-header" runat="server" Text="Equipos en Reparacion"></asp:Label><br /> <br />
-                                      <asp:GridView ID="GridView1_EquiposEnRepa" CssClass="table table-striped"  runat="server"></asp:GridView>
+                                      <asp:GridView ID="GridView1_EquiposEnRepa" CssClass="table table-striped small"  runat="server" OnRowCancelingEdit="GridView1_EquiposEnRepa_RowCancelingEdit" OnRowDeleting="GridView1_EquiposEnRepa_RowDeleting" OnRowEditing="GridView1_EquiposEnRepa_RowEditing" OnSelectedIndexChanging="GridView1_EquiposEnRepa_SelectedIndexChanging"></asp:GridView>
                                     <asp:Button ID="btn_pagar" runat="server" OnClick="btn_pagar_Click" Text="Pagar" /> <br />
                                     <asp:Label ID="Label4" Visible="false" runat="server" Text="Tipo de cuenta: Cuenta Corriente"></asp:Label><br />
                                     <asp:Label ID="Label5" Visible="false" runat="server" Text="Banco: banco de Chile"></asp:Label><br />                                    
@@ -45,7 +45,7 @@
 
                                   <asp:View ID="View2_UpdateInfo" runat="server">
                                     <asp:Label ID="Label1" CssClass="page-header" runat="server" Text="Actualizar Informacion Personal"></asp:Label><br /><br />
-                                      <asp:GridView ID="GridView2_UpdateInf" CssClass="table table-striped" runat="server" allowpaging="true"></asp:GridView>
+                                      <asp:GridView ID="GridView2_UpdateInf" CssClass="table table-striped small" runat="server" allowpaging="true"></asp:GridView>
                                   </asp:View>
                                  <asp:View ID="View2_ComunicarCliente" runat="server">
                                     <asp:Label ID="Label2" CssClass="page-header" runat="server" Text="Comunicar con Tecnico"></asp:Label><br /><br />                                    

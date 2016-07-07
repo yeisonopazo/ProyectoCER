@@ -33,6 +33,10 @@ namespace ProyectoCER
 
                 Response.Redirect("Cliente.aspx");
             }
+            else if (txtUser.Text.Equals("administrador")) {
+
+                Response.Redirect("Administrador.aspx");
+            }
         }
 
     }

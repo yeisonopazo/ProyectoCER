@@ -48,7 +48,7 @@
                                         <asp:Label ID="Label4" CssClass="page-header" runat="server" Text="Recepciones creadas"></asp:Label><br />
                                         <br />
                                         <asp:GridView ID="GridView_recepcion" PageSize="5"
-                                            AllowPaging="true" CssClass="table table-striped table-bordered table-hover" runat="server" OnPageIndexChanging="GridView_recepcion_PageIndexChanging">
+                                            AllowPaging="true" CssClass="table table-striped small" runat="server" OnPageIndexChanging="GridView_recepcion_PageIndexChanging">
                                         </asp:GridView>
                                     </div>
                                 </asp:View>
@@ -79,7 +79,7 @@
 
                                             </div>
                                         </div>
-                                        <asp:GridView ID="GridView_Clientes" CssClass="table table-striped" runat="server"></asp:GridView>
+                                        <asp:GridView ID="GridView_Clientes" CssClass="table table-striped small" runat="server"></asp:GridView>
                                     </div>
                                 </asp:View>
 
@@ -114,6 +114,7 @@
                                                 <div class="modal-body">                                                   
                                                     <asp:DropDownList ID="cbTecnicos" runat="server" CssClass="form-control"></asp:DropDownList><br />
                                                     <asp:DropDownList ID="cbRecepcione" runat="server" CssClass="form-control"></asp:DropDownList><br />
+                                                    <asp:Label ID="lbasignarTec" runat="server" Text="Label"></asp:Label>
                                                 </div>
                                                 <div class="modal-footer">
                                                    
@@ -124,7 +125,7 @@
                                         </div>
 
                                     </asp:Panel>
-                                    <asp:GridView ID="GridView_AsigarTec" class="table table-striped" runat="server"></asp:GridView>
+                                    <asp:GridView ID="GridView_AsigarTec" class="table table-striped small" runat="server"></asp:GridView>
                                 </asp:View>
                             </asp:MultiView>
                         </ContentTemplate>

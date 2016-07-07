@@ -57,6 +57,26 @@ namespace ProyectoCER
 
          }
 
+         protected void GridView1_EquiposEnRepa_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+         {
+
+         }
+
+         protected void GridView1_EquiposEnRepa_RowDeleting(object sender, GridViewDeleteEventArgs e)
+         {
+
+         }
+
+         protected void GridView1_EquiposEnRepa_RowEditing(object sender, GridViewEditEventArgs e)
+         {
+
+         }
+
+         protected void GridView1_EquiposEnRepa_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+         {
+
+         }
+
         
         
       
